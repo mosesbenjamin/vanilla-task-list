@@ -117,20 +117,22 @@ function removeTask(e){
 
 // Remove from storage
 function removeFromStorage(taskItem){
-		let tasks;
-		if (localStorage.getItem('tasks') === null){
-			tasks = [];
-		} else {
-			tasks = JSON.parse(localStorage.getItem('tasks'))
-		}
+		
+  let tasks;
+  let tasksStored = localStorage.getItem('tasks');
+  if(tasksStored === null) {
+    tasks = [];
+  }
+  else {
+    tasks = JSON.parse(tasksStored);
+  }
 
-		tasks.forEach( function(task){
-			if(taskItem.textContent === task){
-				localStorage.removeItem(task);
-			}
-		})
-
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+  tasks.forEach((task, index) => {
+    if(taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 
 }
 
