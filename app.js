@@ -124,9 +124,9 @@ function removeFromStorage(taskItem){
 			tasks = JSON.parse(localStorage.getItem('tasks'))
 		}
 
-		tasks.forEach( function(task, index){
+		tasks.forEach( function(task){
 			if(taskItem.textContent === task){
-				tasks.splice(index, 1);
+				localStorage.removeItem(task);
 			}
 		})
 
